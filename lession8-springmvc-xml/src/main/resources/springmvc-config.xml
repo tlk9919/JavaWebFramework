@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 包扫描-->
+    <context:component-scan base-package="com.example"/>
+
+    <!-- 配置视图解析器 视图解析器负责将逻辑视图名称转换成具体的视图对象，从而完成视图的渲染。-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          id="internalResourceViewResolver">
+        <!-- 前缀 -->
+        <property name="prefix" value="/WEB-INF/"/>
+        <!-- 后缀 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--
+    在这个视图解析器配置中：
+    prefix 属性指定了视图路径的前缀，这里是/WEB-INF/。  WEB-INF（Web-INF）目录是web应用的一个非常重要的目录，里面包含了一些关键的配置文件和资源，通常不允许直接从Web浏览器访问。WEB-INF 目录的主要用途是存储应用级别的配置文件、类文件、库文件以及其他不应该直接暴露给用户的文件。
+    suffix 属性指定了视图路径的后缀，这里是.jsp。
+    例如，如果控制器返回一个名为home的视图名称，视图解析器将把它转换为/WEB-INF/home.jsp的实际路径。
+    -->
+</beans>

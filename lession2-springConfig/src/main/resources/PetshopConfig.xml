@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<description> 宠物商店总配置</description>
+<!--    员工-->
+    <import resource="workerConfig.xml"/>
+<!--    宠物-->
+    <import resource="petCongfig.xml"/>
+    <alias name="worker01" alias="boss"/>
+<!--    张三是老板也是员工-->
+</beans>

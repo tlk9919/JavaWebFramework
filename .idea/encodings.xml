@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/demo/demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession-ioc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession-ioc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession1-firstSpring/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession1-firstSpring/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession11-demo/demo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession11-springboot/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession11-springboot/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession2-springConfig/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession2-springConfig/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession3-beanLifeCycle/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession3-beanLifeCycle/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession4-ioc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession4-ioc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession5-annotation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession5-annotation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession6-aop/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession6-aop/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession7-jdbc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession7-jdbc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession8-springmvc-annotation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession8-springmvc-annotation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession8-springmvc-xml/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession8-springmvc-xml/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession9-springmvc-annotation-example/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession9-springmvc-annotation-example/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession9-springmvc-annotation/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession9-springmvc-annotation/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lesssion11-springboot_demo1/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

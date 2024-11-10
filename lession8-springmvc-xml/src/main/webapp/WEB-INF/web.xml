@@ -1,0 +1,28 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <!--SpringMVC提供的前端控制器-->
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!--通过初始化参数指定SpringMVC配置文件-->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc-config.xml</param-value>
+<!--      classpath:前缀表示该配置文件位于类路径中，Spring会在类路径下查找名为springmvc-config.xml的文件。-->
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <!--  /* 表示任何一个请求都交给DispatcherServlet来处理 -->
+    <!--  / 表示当请求不是xx.jsp的时候，DispatcherServlet来负责处理本次请求-->
+    <!-- jsp本质就是Servlet，因此如果请求是jsp的话，应该走它自己的Servlet，而不应该走DispatcherServlet -->
+    <!-- 因此这里 url-pattern 使用 / -->
+    <url-pattern>/</url-pattern>
+<!--    / 表示所有请求都将被 DispatcherServlet 处理，除了那些明确被其他 servlet（如 JSP）处理的请求。-->
+<!--    这意味着只要请求的 URL 不以 .jsp 结尾，DispatcherServlet 就会负责处理该请求。-->
+  </servlet-mapping>
+</web-app>

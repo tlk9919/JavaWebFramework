@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="teacher" class="constructor.Teacher">
+    <constructor-arg value="1001"></constructor-arg>
+    <constructor-arg value="Mr. Smith"></constructor-arg>
+</bean>
+    <bean id="courses" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <bean class="constructor.Course">
+                <constructor-arg value="001"></constructor-arg>
+                <constructor-arg value="Math" ></constructor-arg>
+            </bean>
+                <bean class="constructor.Course">
+                <constructor-arg value="002"></constructor-arg>
+                <constructor-arg value="Physics" ></constructor-arg>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+<bean id="zs" class="constructor.Student">
+    <constructor-arg name="num" value="1"></constructor-arg>
+    <constructor-arg name="sanme" value="zhangshan"></constructor-arg>
+    <constructor-arg name="age" value="20"></constructor-arg>
+    <constructor-arg name="sex" value="male"></constructor-arg>
+    <constructor-arg name="classTeacher" ref="teacher"></constructor-arg>
+    <constructor-arg name="hobby" >
+        <list>
+            <value>reading</value>
+            <value>swimming</value>
+        </list>
+    </constructor-arg>
+    <constructor-arg name="courses" ref="courses"></constructor-arg>
+</bean>
+</beans>

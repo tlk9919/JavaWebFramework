@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Login Service -->
+    <bean id="loginService" class="login_demo.LoginService"
+          init-method="init" destroy-method="destroy">
+    </bean>
+
+    <!-- Login Controller -->
+    <bean id="loginController" class="login_demo.LoginController" init-method="init" scope="prototype">
+        <property name="loginService" ref="loginService"/>
+    </bean>
+
+    <!-- BeanPostProcessor -->
+    <bean id="loggingBeanPostProcessor" class="login_demo.LoggingBeanPostProcessor"/>
+</beans>
