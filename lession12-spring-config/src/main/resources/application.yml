@@ -1,0 +1,17 @@
+#spring.application.name=lession12-spring-config
+#与下面等价
+spring:
+  application:
+    name: lession12-spring-config
+
+  config:
+    import: redis.yml,mysql.yml
+
+server:
+  port: 8081
+
+
+myconfig:
+  name: dbconfig
+  num: 1001
+
