@@ -64,7 +64,6 @@ public class StudentController {
         }
     }
 
-
     @PutMapping("/update")
     public Student edit(@RequestBody Student student){
         Student studentBefore =   studentService.getById(student.getId());

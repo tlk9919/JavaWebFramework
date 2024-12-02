@@ -1,0 +1,15 @@
+#d1 {
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* 渐变背景 */
+    border-radius: 15px;  /* 圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* 阴影效果 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}

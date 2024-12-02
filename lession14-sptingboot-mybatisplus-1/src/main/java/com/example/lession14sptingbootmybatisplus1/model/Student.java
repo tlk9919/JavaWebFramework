@@ -21,5 +21,4 @@ public class Student {
     private Integer snum;
 
     private  String sname;
-
 }

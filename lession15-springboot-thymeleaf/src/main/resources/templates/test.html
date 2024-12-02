@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<head>
+    <link th:href="@{/test.css}" rel="stylesheet" type="text/css">
+    <script th:src="@{/test.js}"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <p th:text="${name}"> Welcome</p>
+    <p th:utext="${desc}">description</p>
+    <h1>个人信息</h1>
+    <div th:object="${user}">
+        <h2 th:text="'Welcome'+ ${user.username}+'!'"></h2>
+        <p> ID: <span th:text="*{id}"></span> </p>
+        <p> 用户名：<span th:text="*{username}"></span></p>
+        <p>初始密码: <span th:text="*{password}"></span></p>
+        <p>是否会员: <span th:text="*{isVIP}"></span></p>
+    <div th:switch="*{role}">
+        <p th:case="'admin'">系统角色： 管理员</p>
+        <p th:case="'user'">系统角色： 普通用户</p>
+        <p th:case="*">系统角色： 游客</p>
+    </div>
+    <p>标签：<span th:text="*{tags}"> </span> </p>
+    <ul>
+        <li th:each="item :*{tags}" th:text="${item}"></li>
+    </ul>
+        <ul>
+            <li th:each="item,iterStat :*{tags}">
+                <span th:text="${iterStat.index+1}+':'+${item}"></span>
+            </li>
+        </ul>
+        <!-- 格式化日期 -->
+<!--        #用来访问内置工具类-->
+        <p>生日: <span th:text="*{#temporals.format(birthDate, 'yyyy-MM-dd')}"></span></p>
+        <!-- 格式化时间 -->
+        <p>登录时间:<span th:text="*{#temporals.format(loginTime,'HH:mm')}"></span> </p>
+        <!-- 格式化日期和时间 -->
+        <p>注册时间: <span th:text="*{#temporals.format(registrationDateTime, 'yyyy-MM-dd HH:mm')}"></span></p>
+
+        <p>注册时间<span th:if="*{isVIP()==true}"></span>尊贵的会员欢迎您！</p>
+        <p th:if="*{isVIP}">尊贵的会员欢迎您！</p>
+
+        <p th:unless="*{isVIP==true}">成为会员解锁更多特权</p>
+        <p th:unless="*{isVIP}">成为会员解锁更多特权</p>
+
+    </div>
+
+</body>
+</html>

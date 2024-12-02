@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>学生信息管理系统</title>
+    <!-- 引入样式 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/layui/2.9.18/css/layui.css" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/layui/2.9.18/css/layui.css}" rel="stylesheet">
+    <!-- 引入组件库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/layui/2.9.18/layui.min.js" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/layui/2.9.18/layui.min.js}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" th:src="@{https://code.jquery.com/jquery-3.6.0.min.js}"></script>
+    <script>
+        function deleteStudent(id) {
+            if (confirm('确定删除当前记录?')) {
+                $.ajax({
+                    url: '/student/delete',
+                    type: 'DELETE',
+                    data: {id: id},
+                    success: function(response) {
+                        // 处理后端返回的响应
+                        if (response === '删除成功！') {
+                            // 如果删除成功，跳转到学生列表页面
+                            window.location.href = '/student/all';
+                        } else {
+                            // 如果删除失败，弹出提示
+                            alert(response);  // 显示删除失败的消息
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        // 输出详细错误信息
+                        console.log('请求错误：', errorThrown);
+                        console.log('返回的状态码：', jqXHR.status);
+                        console.log('返回的响应内容：', jqXHR.responseText);
+                        alert('Failed to delete student');
+                    }
+                });
+            }
+        }
+
+    </script>
+    <style>
+        #table {
+            width: 50%; /* 设置表格的宽度，可以根据需要调整 */
+            margin: 0 auto; /* 左右外边距自动，实现水平居中 */
+            border: 1px solid black; /* 添加边框以便观察效果 */
+        }
+    </style>
+</head>
+<body>
+<H1 style="text-align: center">学生信息管理</H1>
+<table class="layui-table" id="table">
+    <thead>
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student:${students}">
+        <td th:text="${student.snum}">1001</td>
+        <td th:text="${student.sname}">张三</td>
+        <td >
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-primary">
+                <a th:href="@{/student/searchById(id=${student.id})}"><i class="layui-icon layui-icon-edit"></i></a>
+            </button>
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-primary">
+                <a href="#" th:onclick="'deleteStudent(' + ${student.id} + ');'"><i class="layui-icon layui-icon-delete"></i></a>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:if="${message}">
+    <p th:text="${message}"></p>
+</div>
+
+</body>
+</html>
