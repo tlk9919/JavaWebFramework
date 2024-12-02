@@ -23,55 +23,60 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private IStudentService studentService;
+
     //查询所有学生
     @GetMapping("/all")
-    public String searchAll(Model model){
-        List<Student> studentList=studentService.list();
+    public String searchAll(Model model) {
+        List<Student> studentList = studentService.list();
         System.out.println(studentList);
         model.addAttribute("students", studentList);
         return "student";
     }
+
     //根据id查询
     @GetMapping("/searchById")
-    public Student searchById(@RequestParam("id") int id){
+    public Student searchById(@RequestParam("id") int id) {
         System.out.println(id);
-        Student student=studentService.getById(id);
+        Student student = studentService.getById(id);
         System.out.println(student);
         return student;
     }
+
     //根据名字查询
     @GetMapping("/searchByName")
-    public List<Student> searchByName(@RequestParam("name") String name){
-        QueryWrapper<Student > queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("sname",name);
-        List<Student> studentList=studentService.list(queryWrapper);
+    public List<Student> searchByName(@RequestParam("name") String name) {
+        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("sname", name);
+        List<Student> studentList = studentService.list(queryWrapper);
         return studentList;
     }
+
     //模糊查询
     @GetMapping("/searchByNameFuzzy")
-    public List<Student> searchByNameFuzzy(@RequestParam("name") String name){
-        QueryWrapper<Student> queryWrapper=new QueryWrapper<>();
-        queryWrapper.like("sname",name);
-        List<Student> studentList=studentService.list(queryWrapper);
+    public List<Student> searchByNameFuzzy(@RequestParam("name") String name) {
+        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("sname", name);
+        List<Student> studentList = studentService.list(queryWrapper);
         return studentList;
     }
+
     //学生注册
     @PostMapping("/register")
-    public String register(@RequestBody Student student){
-        boolean flag= studentService.save(student);
-        if(flag){
+    public String register(@RequestBody Student student) {
+        boolean flag = studentService.save(student);
+        if (flag) {
             return "注册成功";
-        }
-        else{
+        } else {
             return "registered failed";
         }
     }
+
     //学生更新
     @PutMapping("/update")
-    public Student update(@RequestBody Student student){
-        Student studentBefore=studentService.getById(student.getId());
+    public Student update(@RequestBody Student student) {
+        Student studentBefore = studentService.getById(student.getId());
         System.out.println("修改前：\t" + studentBefore);
-        boolean flag=studentService.updateById(student);
+        boolean flag = studentService.updateById(student);
         System.out.println("修改成功？：\t" + flag);
         Student studentAfter = studentService.getById(student.getId());
         System.out.println("修改后：\t" + studentAfter);
@@ -90,5 +95,5 @@ public class StudentController {
         } else {
             return "error";
         }
-
+    }
 }
