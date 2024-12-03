@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/StarWhisper_mongoDb/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lession1-firstSpring/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lession1-firstSpring/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lession11-demo/demo/src/main/java" charset="UTF-8" />
@@ -14,6 +15,9 @@
     <file url="file://$PROJECT_DIR$/lession14-sptingboot-mybatisplus-2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lession15-springboot-thymeleaf/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lession15-springboot-thymeleaf_Case/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession16-springboot-exception-NoTemplatEengine/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession16-springboot-exception-TemplatEengine/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lession16-springboot-exception/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lession2-springConfig/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lession2-springConfig/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lession3-beanLifeCycle/src/main/java" charset="UTF-8" />
@@ -34,7 +38,6 @@
     <file url="file://$PROJECT_DIR$/lession9-springmvc-annotation-example/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lession9-springmvc-annotation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/lession9-springmvc-annotation/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/lesssion11-springboot_demo1/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

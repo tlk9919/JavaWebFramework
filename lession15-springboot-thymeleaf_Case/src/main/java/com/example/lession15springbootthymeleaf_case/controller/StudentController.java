@@ -35,6 +35,7 @@ public class StudentController {
 
     //根据id查询
     @GetMapping("/searchById")
+    @ResponseBody
     public Student searchById(@RequestParam("id") int id) {
         System.out.println(id);
         Student student = studentService.getById(id);

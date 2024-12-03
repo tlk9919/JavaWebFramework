@@ -1,18 +1,11 @@
 server:
-  port: 8080
+  port: 8082
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/javaweb
     username: root
     password: root
-
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    mode: HTML
-    encoding: UTF-8
-    cache: false
 
 mybatis-plus:
   configuration:
