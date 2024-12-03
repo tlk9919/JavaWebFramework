@@ -1,0 +1,20 @@
+server:
+  port: 3000
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/starwisper
+  mail:
+    host: smtp.126.com
+    port: 465
+    username: tlk_sure@126.com
+    password: TJhzZdbL4BkNXJtN
+    protocol: smtps
+    smtp:
+      auth: true
+      starttls:
+        enable: true
+      ssl:
+        enable: true
+    debug: true
