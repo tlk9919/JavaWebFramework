@@ -6,17 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/StarWhisper_mongoDb/pom.xml" />
-        <option value="$PROJECT_DIR$/lession12-spring-config/pom.xml" />
-        <option value="$PROJECT_DIR$/lession11-springboot_demo1/pom.xml" />
-        <option value="$PROJECT_DIR$/lession13-springboot-mybatis/pom.xml" />
-        <option value="$PROJECT_DIR$/lession13-springboot-mybatis-annotation/pom.xml" />
-        <option value="$PROJECT_DIR$/lession14-sptingboot-mybatisplus-1/pom.xml" />
-        <option value="$PROJECT_DIR$/lession14-sptingboot-mybatisplus-2/pom.xml" />
-        <option value="$PROJECT_DIR$/lession15-springboot-thymeleaf/pom.xml" />
-        <option value="$PROJECT_DIR$/lession15-springboot-thymeleaf_Case/pom.xml" />
-        <option value="$PROJECT_DIR$/lession16-springboot-exception/pom.xml" />
-        <option value="$PROJECT_DIR$/lession16-springboot-exception-NoTemplatEengine/pom.xml" />
-        <option value="$PROJECT_DIR$/lession16-springboot-exception-TemplatEengine/pom.xml" />
+        <option value="$PROJECT_DIR$/StarWhisper_mysql/pom.xml" />
       </list>
     </option>
   </component>

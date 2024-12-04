@@ -1,0 +1,32 @@
+server:
+  port: 3000
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/starwhisper
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect   # 使用 MySQL8Dialect 以兼容 MySQL 8
+    hibernate:
+      ddl-auto: update
+
+  mail:
+    host: smtp.126.com
+    port: 465
+    username: tlk_sure@126.com
+    password: TJhzZdbL4BkNXJtN
+    protocol: smtps
+    smtp:
+      auth: true
+      starttls:
+        enable: true
+      ssl:
+        enable: true
+    debug: true
+
+logging:
+  level:
+    com.zaxxer.hikari: DEBUG
