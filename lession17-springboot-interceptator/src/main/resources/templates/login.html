@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        .login-container {
+            border: deepskyblue 2px solid;
+            width: 400px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        input {
+            margin-bottom: 10px;
+            width: 80%;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="login-container">
+    <h2>登录</h2>
+    <h3 style="color: red;" th:text="${msg}"></h3>
+    <form id="loginForm" th:action="@{/user/doLogin}" th:method="post">
+        <label for="username"></label><input type="text" id="username" name="username" placeholder="请输入用户名">
+        <label for="password"></label><input type="password" id="password" name="password" placeholder="请输入密码">
+        <button type="submit">登录</button>
+    </form>
+</div>
+
+</body>
+</html>
