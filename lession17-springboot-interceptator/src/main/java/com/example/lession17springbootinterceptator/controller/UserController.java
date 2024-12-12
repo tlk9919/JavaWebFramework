@@ -38,7 +38,7 @@ public class UserController {
             //登录成功保存会话的用户名
             session.setAttribute("username",user.getUsername());//key-vaule形式
             System.out.println("login sucess");
-            return  "redirect:/student";
+            return  "student";
         }
         else{
             model.addAttribute("msg","用户名或密码错误");
