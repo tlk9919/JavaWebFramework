@@ -33,5 +33,5 @@ jwt:
   expiration: 3600000
 
 openai:
-  api-key: ${OPENAI_API_KEY}
+  api-key: sk-51819998bf314b68a3efd5e7b4adb23c
   base-url: https://api.deepseek.com

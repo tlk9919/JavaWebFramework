@@ -10,8 +10,7 @@ import lombok.Data;
 public class User {
     @TableId(type = IdType.AUTO)
     private Long id;
-    
-    // username字段实际存储的是邮箱地址
+
     private String username;
     private String password;
 } 
