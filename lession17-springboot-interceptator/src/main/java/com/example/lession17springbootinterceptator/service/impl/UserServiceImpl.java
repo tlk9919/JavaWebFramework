@@ -18,7 +18,7 @@ import java.util.Objects;
  * @since 2024-12-10
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService<User> {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Override
     public boolean doLogin(User user) {

@@ -29,7 +29,7 @@ public class UserController {
     }
     //处理登录
     @PostMapping("/doLogin")
-    public String doLogin(@ModelAttribute User user, Model model, HttpSession session){
+    public String login(@ModelAttribute User user, Model model, HttpSession session){
         //打印前端传来的数据
         System.out.println("user" + user);
         //校验用户名密码，service层
@@ -38,7 +38,7 @@ public class UserController {
             //登录成功保存会话的用户名
             session.setAttribute("username",user.getUsername());//key-vaule形式
             System.out.println("login sucess");
-            return  "redirect:/user";
+            return  "redirect:/student";
         }
         else{
             model.addAttribute("msg","用户名或密码错误");
