@@ -3,6 +3,7 @@ package com.example.starwhisperserver.controller;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.starwhisperserver.model.ApiResponse;
 import com.example.starwhisperserver.model.RegisterRequest;
+import com.example.starwhisperserver.model.User;
 import com.example.starwhisperserver.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,5 +42,23 @@ public class UserController {
             return new ApiResponse("注册成功");
         }
         return new ApiResponse("用户名已存在");
+    }
+    //登录
+    @PostMapping("/login")
+    public  ApiResponse  login(@RequestBody User user){
+        //检查非空
+        String username=user.getUsername();
+        String password=user.getPassword();
+        if(username==null||password==null){
+            return  new ApiResponse("请输入账号名或密码");
+        }
+        //调用服务处理数据
+        String token= userService.login(username,password);
+
+        //成功
+        if (token != null) {
+            return new ApiResponse("登录成功", token);
+        }
+        return new ApiResponse("用户名或密码错误");
     }
 }
