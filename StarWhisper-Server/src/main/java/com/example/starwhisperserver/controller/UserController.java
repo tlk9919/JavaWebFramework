@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <p>
  *  前端控制器
@@ -24,17 +27,21 @@ public class UserController {
 
     //注册
     @PostMapping("/register")
-    public String register(@RequestBody RegisterRequest request){
+    public Map<String, String> register(@RequestBody RegisterRequest request){
+        Map<String,String> response=new HashMap<>();
         //检查非空
         if(request.getUsername().isEmpty()||request.getPassword().isEmpty()){
-            return "用户名和密码不能为空";
+            response.put("message","用户名和密码不能为空");
+            return response;
         }
         //调用服务层处理数据
         boolean res=userService.register(request.getUsername(),request.getPassword(),request.getCode());
         //成功
         if(res){
-            return "注册成功";
+            response.put("message","注册成功");
+            return response;
         }
-        return "用户名已存在";
+        response.put("message","用户名已存在");
+        return response;
     }
 }

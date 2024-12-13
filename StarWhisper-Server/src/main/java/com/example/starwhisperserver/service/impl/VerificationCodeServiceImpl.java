@@ -6,6 +6,7 @@ import com.example.starwhisperserver.dao.VerificationCodeMapper;
 import com.example.starwhisperserver.service.IVerificationCodeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -28,24 +29,41 @@ public class VerificationCodeServiceImpl extends ServiceImpl<VerificationCodeMap
     private JavaMailSender mailSender;
 
     @Override
-    public void sendVerificationCode(String email){
+    public boolean sendVerificationCode(String email){
         // 生成6位随机验证码
         String code=String.format("%06d",new Random().nextInt(999999));
         //设置5分钟后过期
         Date expires=new Date(System.currentTimeMillis()+5*60*1000);
-        // 更新验证码信息到数据库
-        VerificationCode verificationCode = new VerificationCode();
-        verificationCode.setEmail(email);
-        verificationCode.setCode(code);
-        verificationCode.setExpires(expires);
-        this.saveOrUpdate(verificationCode);//使用update需要创建 UpdateWrapper指定更新条件
-        //发送邮件
-        SimpleMailMessage message=new SimpleMailMessage();
-        message.setFrom("tlk_sure@126.com");
-        message.setTo(email);
-        message.setSubject("星语小屋");
-        message.setText("【星语小屋】您的验证码是: " + code + "，验证码5分钟内有效。");
-        mailSender.send(message);
+        // 查询邮箱是否已经有验证码记录
+        QueryWrapper<VerificationCode> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("email",email);
+        VerificationCode existingVerificationCode=this.getOne(queryWrapper);
+        // 如果验证码记录存在，更新验证码信息
+        if(existingVerificationCode!=null){
+            existingVerificationCode.setCode(code);
+            existingVerificationCode.setExpires(expires);
+            this.updateById(existingVerificationCode);
+        }
+        // 如果验证码记录不存在，保存新的验证码
+        else {
+            VerificationCode verificationCode=new VerificationCode();
+            verificationCode.setEmail(email);
+            verificationCode.setCode(code);
+            verificationCode.setExpires(expires);
+            this.save(verificationCode);
+        }
+        try {
+            //发送邮件
+            SimpleMailMessage message=new SimpleMailMessage();
+            message.setFrom("tlk_sure@126.com");
+            message.setTo(email);
+            message.setSubject("星语小屋");
+            message.setText("【星语小屋】您的验证码是: " + code + "，验证码5分钟内有效。");
+            mailSender.send(message);
+        } catch (MailException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
     @Override
     public boolean verifyCode(String email, String code){

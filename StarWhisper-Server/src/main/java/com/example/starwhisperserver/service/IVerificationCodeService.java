@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IVerificationCodeService extends IService<VerificationCode> {
     //发送验证码
-    void sendVerificationCode(String email);
+    boolean sendVerificationCode(String email);
     //验证验证码
     boolean verifyCode(String email, String code);
 
