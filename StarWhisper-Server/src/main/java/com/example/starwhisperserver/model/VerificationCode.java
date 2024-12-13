@@ -20,7 +20,7 @@ import lombok.Setter;
  * @author admin_tlk
  * @since 2024-12-12
  */
-
+@Data
 @TableName("verification_code")
 public class VerificationCode implements Serializable {
 
@@ -38,45 +38,5 @@ public class VerificationCode implements Serializable {
     @TableField("expires")
     private Date expires;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public Date getExpires() {
-        return expires;
-    }
-
-    public void setExpires(Date expires) {
-        this.expires = expires;
-    }
-
-    @Override
-    public String toString() {
-        return "VerificationCode{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", code='" + code + '\'' +
-                ", expires=" + expires +
-                '}';
-    }
 }

@@ -1,6 +1,7 @@
 package com.example.starwhisperserver.controller;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.starwhisperserver.model.ApiResponse;
 import com.example.starwhisperserver.model.RegisterRequest;
 import com.example.starwhisperserver.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,21 +28,18 @@ public class UserController {
 
     //注册
     @PostMapping("/register")
-    public Map<String, String> register(@RequestBody RegisterRequest request){
+    public ApiResponse register(@RequestBody RegisterRequest request){
         Map<String,String> response=new HashMap<>();
         //检查非空
         if(request.getUsername().isEmpty()||request.getPassword().isEmpty()){
-            response.put("message","用户名和密码不能为空");
-            return response;
+            return new ApiResponse("用户名和密码不能为空");
         }
         //调用服务层处理数据
         boolean res=userService.register(request.getUsername(),request.getPassword(),request.getCode());
         //成功
         if(res){
-            response.put("message","注册成功");
-            return response;
+            return new ApiResponse("注册成功");
         }
-        response.put("message","用户名已存在");
-        return response;
+        return new ApiResponse("用户名已存在");
     }
 }

@@ -1,5 +1,7 @@
 package com.example.starwhisperserver.model;
 
+import lombok.Data;
+
 /**
  * @author admin
  * @classnam ApiResponse
@@ -7,6 +9,7 @@ package com.example.starwhisperserver.model;
  * @date 2024/12/12
  */
 //统一返回格式
+    @Data
 public class ApiResponse {
     private String message;
     private String token;
