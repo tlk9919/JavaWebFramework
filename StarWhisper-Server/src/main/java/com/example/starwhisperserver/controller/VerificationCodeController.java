@@ -2,6 +2,7 @@ package com.example.starwhisperserver.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.starwhisperserver.model.ApiResponse;
+import com.example.starwhisperserver.model.ResponseEnum;
 import com.example.starwhisperserver.model.VerificationCode;
 import com.example.starwhisperserver.service.IVerificationCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +27,20 @@ public class VerificationCodeController {
     private IVerificationCodeService verificationCodeService;
     //发送验证码
     @PostMapping("/send-verification-code")
-    public ApiResponse sendVerificationCode(@RequestBody VerificationCode verificationCode){
+    public ApiResponse<String> sendVerificationCode(@RequestBody VerificationCode verificationCode){
 
         //调用服务层
       boolean res=  verificationCodeService.sendVerificationCode( verificationCode.getEmail());
       if (res){
-          return new ApiResponse("验证码发送成功");
+
+          return new ApiResponse<>(ResponseEnum.VERIFICATION_CODE_SEND_SUCCESS);
       }
-        return new ApiResponse("验证码发送失败");
+
+        return new ApiResponse<>(ResponseEnum.VERIFICATION_CODE_SEND_FAILED);
     }
     //验证验证码
     @PostMapping("/verify-code")
-    public ApiResponse verifyCode(@RequestBody VerificationCode verificationCode){
+    public ApiResponse<String> verifyCode(@RequestBody VerificationCode verificationCode){
         String email= verificationCode.getEmail();
         String code=verificationCode.getCode();
 //        Map<String, String> response = new HashMap<>();
@@ -47,18 +50,21 @@ public class VerificationCodeController {
         VerificationCode existingVerificationCode=verificationCodeService.getOne(queryWrapper);
         // 判断验证码是否存在
         if (existingVerificationCode == null) {
-            return new ApiResponse("验证码不存在");
+            return new ApiResponse<>(ResponseEnum.VERIFICATION_CODE_NOT_FOUND);
         }
 
         // 判断验证码是否过期
         if (new Date().after(existingVerificationCode.getExpires())) {
-            return new ApiResponse("验证码已过期");
+            return new ApiResponse<>(ResponseEnum.VERIFICATION_CODE_EXPIRED);
+
         }
 
         // 判断验证码是否正确
         if (!code.equals(existingVerificationCode.getCode())) {
-            return new ApiResponse("验证码错误");
+
+            return new ApiResponse<>(ResponseEnum.VERIFICATION_CODE_INVALID);
         }
-        return new ApiResponse("验证码验证成功");
+
+        return new ApiResponse<>(ResponseEnum.VERIFICATION_CODE_VERIFIED);
     }
 }

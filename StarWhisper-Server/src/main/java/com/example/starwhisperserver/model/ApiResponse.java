@@ -1,5 +1,6 @@
 package com.example.starwhisperserver.model;
 
+import com.example.starwhisperserver.model.ResponseEnum;
 import lombok.Data;
 
 /**
@@ -10,16 +11,19 @@ import lombok.Data;
  */
 //统一返回格式
     @Data
-public class ApiResponse {
+public class ApiResponse<T> {
+    private Integer code;
     private String message;
     private String token;
+    private T data;
 
-    public ApiResponse(String message) {
-        this.message = message;
+    public ApiResponse(ResponseEnum responseEnum) {
+        this.code=responseEnum.getCode();
+        this.message=responseEnum.getMessage();
     }
-
-    public ApiResponse(String message, String token) {
-        this.message = message;
-        this.token = token;
+    public ApiResponse(ResponseEnum responseEnum, T data) {
+        this.code = responseEnum.getCode();
+        this.message = responseEnum.getMessage();
+        this.data = data;
     }
 }

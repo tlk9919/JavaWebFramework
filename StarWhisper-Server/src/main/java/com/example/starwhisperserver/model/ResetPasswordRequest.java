@@ -10,8 +10,8 @@ import lombok.Data;
  */
 @Data
 public class ResetPasswordRequest {
-    private String email;        // 用户邮箱
+    private String email;
     private String newPassword;
-    private String confirmPassword;// 新密码
+    private String confirmPassword;
     private String code;
 }

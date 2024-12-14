@@ -22,4 +22,6 @@ public interface IUserService extends IService<User> {
     boolean resetPassword(String email, String code, String newPassword,String confirmPassword);
     //查询所有用户
     List<User> getAllUsers();
+    //根据用户名查询
+    User getUserByUsername(String username);
 }

@@ -82,10 +82,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
     //忘记密码
 @Override
-   public  boolean resetPassword(String email, String code, String newPassword ,String confirmPassword){
+   public  boolean resetPassword(String email, String newPassword ,String confirmPassword,String code){
         //校验验证码
-    if(verificationCodeService.verifyCode(email,code)){
-
+    if(!verificationCodeService.verifyCode(email,code)){
+        System.out.println("服务层：验证码验证失败");
         return false;
     }
     //校验用户名是否存在
@@ -93,6 +93,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     queryWrapper.eq("username",email);
     //密码修改
     User user=this.getOne(queryWrapper);
+    System.out.println("服务层：查询到的用户为"+user);
     if(user==null){
         System.out.println("服务层：用户名不存在");
         return false;
@@ -100,10 +101,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     //执行修改密码
     user.setPassword(newPassword);
     boolean result=this.updateById(user);//有主键的更新方法
+    System.out.println("服务层：更新的到的结果为"+result);
     return result;
 }
-//查询所有用户
- public List<User> getAllUsers(){
-        return this.list();
-}
+    //查询所有用户
+     public List<User> getAllUsers(){
+            return this.list();
+    }
+    //根据用户名查询数据
+    public User getUserByUsername(String username){
+        //直接执行查询
+        QueryWrapper<User> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("username",username);
+        return this.getOne(queryWrapper);
+    }
 }
