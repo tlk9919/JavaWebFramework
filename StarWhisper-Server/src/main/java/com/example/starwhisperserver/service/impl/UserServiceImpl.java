@@ -38,7 +38,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
   public  boolean register(String username ,String password,String code){
         //验证验证码
         if(!verificationCodeService.verifyCode(username,code)){
-            System.out.println("注册时候,验证码验证失败");
+            System.out.println("服务层：注册时候,验证码验证失败");
             return false;
         }
         //检查用户是否存在
@@ -47,6 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         //如果已经有返回false
 //        User user=this.getOne(queryWrapper);
         if(this.getOne(queryWrapper)!=null){
+            System.out.println("服务层：用户名有已经存在");
             return false;
         }
         //不存在就创建新用户
@@ -66,6 +67,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User user=this.getOne(queryWrapper);
         //用户不存在
         if(user==null){
+            System.out.println("服务层：用户名不存在");
             return  null;
         }
         //生成token
@@ -77,5 +79,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                 .compact();  // 最终生成 JWT 字符串
         return token;
     }
+    //忘记密码
+@Override
+   public  boolean resetPassword(String email, String code, String newPassword ,String confirmPassword){
+        //校验验证码
+    if(verificationCodeService.verifyCode(email,code)){
 
+        return false;
+    }
+    //校验用户名是否存在
+    QueryWrapper<User> queryWrapper=new QueryWrapper<>();
+    queryWrapper.eq("username",email);
+    //密码修改
+    User user=this.getOne(queryWrapper);
+    if(user==null){
+        System.out.println("服务层：用户名不存在");
+        return false;
+    }
+    //执行修改密码
+    user.setPassword(newPassword);
+    boolean result=this.updateById(user);//有主键的更新方法
+    return result;
+}
 }

@@ -16,4 +16,7 @@ public interface IUserService extends IService<User> {
     boolean register(String username ,String password,String code);
     //登录
     String login(String username ,String password);
+    //忘记密码
+    boolean resetPassword(String email, String code, String newPassword,String confirmPassword);
+
 }

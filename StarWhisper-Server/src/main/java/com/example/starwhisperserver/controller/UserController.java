@@ -6,10 +6,7 @@ import com.example.starwhisperserver.model.RegisterRequest;
 import com.example.starwhisperserver.model.User;
 import com.example.starwhisperserver.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,5 +57,29 @@ public class UserController {
             return new ApiResponse("登录成功", token);
         }
         return new ApiResponse("用户名或密码错误");
+    }
+    //重置密码
+    @PutMapping("/reset-password")
+    public Map<String,String> resetPassword(@RequestBody Map<String ,String> request){//RegisterRequest 含有相应字段
+        Map<String,String> response=new HashMap<>();
+        //非空校验
+        System.out.println("接收到的重置密码请求: " + request);
+        String username=request.get("email");
+        String newPassword=request.get("newPassword");
+        String confirmPassword=request.get("confirmPassword");
+        String code=request.get("code");
+
+        if(username==null||newPassword ==null) {
+            response.put("message", "请输入密码或用户名");
+            return response;
+        }
+        //调用服务
+       boolean result= userService.resetPassword(username,newPassword,code,confirmPassword);
+        if(result){
+            response.put("message", "密码修改成功");
+            return response;
+        }
+        response.put("message", "密码重置失败");
+        return response;
     }
 }
