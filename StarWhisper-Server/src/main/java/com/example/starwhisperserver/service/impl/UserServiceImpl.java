@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -100,5 +101,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     user.setPassword(newPassword);
     boolean result=this.updateById(user);//有主键的更新方法
     return result;
+}
+//查询所有用户
+ public List<User> getAllUsers(){
+        return this.list();
 }
 }

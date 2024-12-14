@@ -3,12 +3,14 @@ package com.example.starwhisperserver.controller;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.starwhisperserver.model.ApiResponse;
 import com.example.starwhisperserver.model.RegisterRequest;
+import com.example.starwhisperserver.model.ResetPasswordRequest;
 import com.example.starwhisperserver.model.User;
 import com.example.starwhisperserver.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -60,26 +62,35 @@ public class UserController {
     }
     //重置密码
     @PutMapping("/reset-password")
-    public Map<String,String> resetPassword(@RequestBody Map<String ,String> request){//RegisterRequest 含有相应字段
+    public  ApiResponse  resetPassword(@RequestBody ResetPasswordRequest request){//RegisterRequest 含有相应字段
         Map<String,String> response=new HashMap<>();
         //非空校验
         System.out.println("接收到的重置密码请求: " + request);
-        String username=request.get("email");
-        String newPassword=request.get("newPassword");
-        String confirmPassword=request.get("confirmPassword");
-        String code=request.get("code");
 
-        if(username==null||newPassword ==null) {
-            response.put("message", "请输入密码或用户名");
-            return response;
+        if(request.getEmail()==null||request.getNewPassword() ==null) {
+            return new ApiResponse("用户名或密码错误");
         }
+        String username=request.getEmail();
+        String newPassword=request.getNewPassword();
+        String code=request.getCode();
+        String confirmPassword=request.getConfirmPassword();
         //调用服务
        boolean result= userService.resetPassword(username,newPassword,code,confirmPassword);
         if(result){
-            response.put("message", "密码修改成功");
-            return response;
+            return new ApiResponse("密码修改成功");
         }
-        response.put("message", "密码重置失败");
-        return response;
+        return new ApiResponse("密码重置失败");
+    }
+    //查询所有用户
+    @GetMapping("/users")
+    public void getAllUsers(){
+        //调用服务处层
+        List<User> user = userService.getAllUsers();
+        if(user!=null){
+            System.out.println("查询成功"+user);
+        }
+       else {
+            System.out.println("查询失败");
+        }
     }
 }

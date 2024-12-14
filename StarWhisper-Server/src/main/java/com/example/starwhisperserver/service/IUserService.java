@@ -3,6 +3,8 @@ package com.example.starwhisperserver.service;
 import com.example.starwhisperserver.model.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -18,5 +20,6 @@ public interface IUserService extends IService<User> {
     String login(String username ,String password);
     //忘记密码
     boolean resetPassword(String email, String code, String newPassword,String confirmPassword);
-
+    //查询所有用户
+    List<User> getAllUsers();
 }
