@@ -81,7 +81,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return token;
     }
     //忘记密码
-@Override
+     @Override
    public  boolean resetPassword(String email, String newPassword ,String confirmPassword,String code){
         //校验验证码
     if(!verificationCodeService.verifyCode(email,code)){
@@ -105,14 +105,37 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     return result;
 }
     //查询所有用户
+     @Override
      public List<User> getAllUsers(){
             return this.list();
     }
     //根据用户名查询数据
+    @Override
     public User getUserByUsername(String username){
         //直接执行查询
         QueryWrapper<User> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("username",username);
         return this.getOne(queryWrapper);
+    }
+    //删除用户
+    @Override
+    public void deleteUser(String username ){
+        //插叙用户名是否存在
+        QueryWrapper<User> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("username",username);
+        User user=this.getOne(queryWrapper);
+        try {
+            //判断
+            if (user==null){
+                System.out.println("服务层：用户名不存在");
+            }
+            else {
+                //执行删除用户
+                this.removeById(user);
+//                this.remove(queryWrapper);
+            }
+        } catch (Exception e) {
+            System.err.println("服务层：删除用户时发生异常：" + e.getMessage());
+        }
     }
 }

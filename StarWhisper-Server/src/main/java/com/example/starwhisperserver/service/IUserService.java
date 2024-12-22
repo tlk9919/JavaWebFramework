@@ -24,4 +24,6 @@ public interface IUserService extends IService<User> {
     List<User> getAllUsers();
     //根据用户名查询
     User getUserByUsername(String username);
+    //删除用户
+    void deleteUser(String username );
 }

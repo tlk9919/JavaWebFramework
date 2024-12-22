@@ -6,6 +6,7 @@ import com.example.starwhisperserver.model.ResponseEnum;
 import com.example.starwhisperserver.model.VerificationCode;
 import com.example.starwhisperserver.service.IVerificationCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -28,15 +29,14 @@ public class VerificationCodeController {
     //发送验证码
     @PostMapping("/send-verification-code")
     public ApiResponse<String> sendVerificationCode(@RequestBody VerificationCode verificationCode){
-
         //调用服务层
-      boolean res=  verificationCodeService.sendVerificationCode( verificationCode.getEmail());
-      if (res){
+        try {
+            verificationCodeService.sendVerificationCode( verificationCode.getEmail());
 
-          return new ApiResponse<>(ResponseEnum.VERIFICATION_CODE_SEND_SUCCESS);
-      }
-
-        return new ApiResponse<>(ResponseEnum.VERIFICATION_CODE_SEND_FAILED);
+            return new ApiResponse<>(ResponseEnum.VERIFICATION_CODE_SEND_SUCCESS);
+        } catch (Exception e) {
+            return new ApiResponse<>(ResponseEnum.VERIFICATION_CODE_SEND_FAILED);
+        }
     }
     //验证验证码
     @PostMapping("/verify-code")

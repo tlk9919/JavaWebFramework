@@ -84,26 +84,41 @@ public class UserController {
     }
     //查询所有用户
     @GetMapping("/users")
-    public void getAllUsers(){
+    public ApiResponse<String> getAllUsers(){
         //调用服务处层
         List<User> user = userService.getAllUsers();
         if(user!=null){
             System.out.println("查询成功"+user);
+            return new ApiResponse<>(ResponseEnum.SUCCESS);
         }
        else {
             System.out.println("查询失败");
+            return new ApiResponse<>(ResponseEnum.ERROR);
         }
     }
     //根据用户名查询用户
     @GetMapping("/username")
-    public void getUserByUsername(@RequestParam("username")  String username){
+    public ApiResponse<String> getUserByUsername(@RequestParam("username")  String username){
         //调用服务查询
         User user=userService.getUserByUsername(username);
         if(user==null){
             System.out.println("查询用户失败");
+            return new ApiResponse<>(ResponseEnum.ERROR);
         }
         else {
             System.out.println("查询用户成功"+user);
+            return new ApiResponse<>(ResponseEnum.SUCCESS);
         }
+    }
+    //删除用户
+    @DeleteMapping("/username")
+    public ApiResponse<String> deleteUser(@RequestParam("username") String username){
+        //调用服务层
+        try {
+            userService.deleteUser(username);
+        } catch (Exception e) {
+            System.err.println("控制器：删除用户时发生异常：" + e.getMessage());
+        }
+        return new ApiResponse<>(ResponseEnum.SUCCESS);
     }
 }

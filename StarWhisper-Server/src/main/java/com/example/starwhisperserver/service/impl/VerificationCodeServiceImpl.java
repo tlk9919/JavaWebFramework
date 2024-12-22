@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.JavaMailSender;
 
@@ -29,7 +30,8 @@ public class VerificationCodeServiceImpl extends ServiceImpl<VerificationCodeMap
     private JavaMailSender mailSender;
 
     @Override
-    public boolean sendVerificationCode(String email){
+    @Async
+    public void sendVerificationCode(String email){
         // 生成6位随机验证码
         String code=String.format("%06d",new Random().nextInt(999999));
         //设置5分钟后过期
@@ -63,7 +65,6 @@ public class VerificationCodeServiceImpl extends ServiceImpl<VerificationCodeMap
         } catch (MailException e) {
             e.printStackTrace();
         }
-        return true;
     }
     @Override
     public boolean verifyCode(String email, String code){
