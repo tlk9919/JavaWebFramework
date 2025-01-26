@@ -10,7 +10,7 @@ import lombok.Data;
  * @date 2024/12/12
  */
 //统一返回格式
-    @Data
+@Data
 public class ApiResponse<T> {
     private Integer code;
     private String message;

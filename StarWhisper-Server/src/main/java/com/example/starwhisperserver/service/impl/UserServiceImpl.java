@@ -28,6 +28,7 @@ import java.util.List;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
     @Autowired
     private IVerificationCodeService verificationCodeService;
+
     //生成一个符合 HS256 算法要求的密钥。
     private static final SecretKey JWT_KEY = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256);
 

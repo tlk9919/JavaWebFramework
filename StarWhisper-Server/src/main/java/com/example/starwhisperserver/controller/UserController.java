@@ -76,7 +76,7 @@ public class UserController {
         String confirmPassword=request.getConfirmPassword();
         //调用服务
        boolean result= userService.resetPassword(username,newPassword,confirmPassword,code);
-       System.out.println("k控制器result："+result);
+       System.out.println("控制器result："+result);
         if(result){
             return new ApiResponse<>(ResponseEnum.PASSWORD_RESET_SUCCESS);
         }

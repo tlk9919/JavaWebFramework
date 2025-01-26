@@ -30,7 +30,6 @@ public enum ResponseEnum {
     public int getCode() {
         return code;
     }
-    你讲解一下你的步骤，就是统一值返回封装和这个枚举，还要具体逻辑
     public String getMessage() {
         return message;
     }
